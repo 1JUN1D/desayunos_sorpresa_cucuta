@@ -358,7 +358,24 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
             </div>
         </div>
     </footer>
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
 
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-menu li a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
     <!-- WhatsApp Floating Button -->
     <div class="whatsapp-float">
         <a href="#" onclick="return trackWhatsAppLead('https://wa.me/573202791687', 'floating_button')">
