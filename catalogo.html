@@ -47,21 +47,35 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
         gtag('config', 'AW-17698830352');
     </script>
 
-    <!-- FUNCIÓN DE TRACKING WHATSAPP PARA GOOGLE ADS -->
+    <!-- FUNCIÓN DE TRACKING WHATSAPP PARA GOOGLE ADS - CORREGIDA -->
     <script>
-        function trackWhatsAppLead(whatsappUrl, eventLabel) {
+        function trackWhatsAppLead(event, whatsappUrl, eventLabel) {
+            // Prevenir comportamiento por defecto del botón
+            if (event) {
+                event.preventDefault();
+            }
+            
             try {
+                // Enviar evento de conversión a Google Ads
                 gtag('event', 'conversion', {
                     'send_to': 'AW-17698830352/4RWCCO3m1LgbEJDwuvdB',
                     'event_callback': function() {
+                        // Abrir WhatsApp cuando el tracking se complete
                         window.open(whatsappUrl, '_blank');
-                    }
+                    },
+                    'event_timeout': 2000 // Esperar máximo 2 segundos
                 });
+                
+                // Fallback: Si el callback no se ejecuta, abrir WhatsApp de todos modos
+                setTimeout(function() {
+                    window.open(whatsappUrl, '_blank');
+                }, 2100);
+                
             } catch (error) {
                 console.error('Error en tracking:', error);
+                // Si hay error en el tracking, abrir WhatsApp inmediatamente
                 window.open(whatsappUrl, '_blank');
             }
-            return false;
         }
     </script>
     <link rel="stylesheet" href="catalogo.css">
@@ -113,7 +127,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
                         <p class="product-description">Una deliciosa bandeja que combina lo dulce y lo salado: suaves wafles con frutas frescas, sándwich de jamón, queso y lechuga, jugo natural de naranja y chocolisto cremoso. Acompañan copa de yogur griego con frutas y granola, mix de uvas, brownie, jamón, queso y un Ferrero Rocher.</p>
                         <div class="product-price">$147,000</div>
                         <button class="product-button"
-                            onclick="return trackWhatsAppLead('https://wa.me/573202791687?text=Hola, me interesa el Dulce Despertar por $147,000. ¿Podrías darme más información?', 'dulce_despertar')">
+                            onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687?text=Hola, me interesa el Dulce Despertar por $147,000. ¿Podrías darme más información?', 'dulce_despertar')">
                             Pedir Ahora
                         </button>
                     </div>
@@ -130,7 +144,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
                         <p class="product-description">Bandeja premium con ensalada de frutas con crema de leche, wraps de pollo, jamón, queso y lechuga, mini arepas con queso o salchicha, bebida a elección (café o chocolisto), soda Hatsu y postre casero. Incluye hermoso jarrón de rosas rojas y globo personalizado.</p>
                         <div class="product-price">$265,000</div>
                         <button class="product-button"
-                            onclick="return trackWhatsAppLead('https://wa.me/573202791687?text=Hola, me interesa el Romance en Bandeja por $265,000. ¿Podrías darme más información?', 'romance_bandeja')">
+                            onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687?text=Hola, me interesa el Romance en Bandeja por $265,000. ¿Podrías darme más información?', 'romance_bandeja')">
                             Pedir Ahora
                         </button>
                     </div>
@@ -147,7 +161,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
                         <p class="product-description">Bandeja deliciosa y equilibrada con suaves wafles cubiertos de frutas frescas, wraps de pollo, jamón, queso y lechuga, copa de yogur griego con frutas y granola, brownie con frutos secos, jugo natural de naranja y chocolisto cremoso.</p>
                         <div class="product-price">$180,000</div>
                         <button class="product-button"
-                            onclick="return trackWhatsAppLead('https://wa.me/573202791687?text=Hola, me interesa el Experiencia Dulce por $180,000. ¿Podrías darme más información?', 'experiencia_dulce')">
+                            onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687?text=Hola, me interesa el Experiencia Dulce por $180,000. ¿Podrías darme más información?', 'experiencia_dulce')">
                             Pedir Ahora
                         </button>
                     </div>
@@ -164,7 +178,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
                         <p class="product-description">Bandeja vibrante con sándwich doble piso de jamón, queso, pollo y maicito, huevos revueltos con salchicha ranchera, ensalada de frutas con crema de leche o yogur griego, jugo natural de naranja, chocolisto y tres Ferrero Rocher. Incluye hermoso arreglo floral con girasol y flores variadas.</p>
                         <div class="product-price">$180,000</div>
                         <button class="product-button"
-                            onclick="return trackWhatsAppLead('https://wa.me/573202791687?text=Hola, me interesa el Alegría con Girasol por $180,000. ¿Podrías darme más información?', 'alegria_girasol')">
+                            onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687?text=Hola, me interesa el Alegría con Girasol por $180,000. ¿Podrías darme más información?', 'alegria_girasol')">
                             Pedir Ahora
                         </button>
                     </div>
@@ -181,7 +195,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
                         <p class="product-description">Impresionante arreglo floral en caja con rosas rojas y tres girasoles vibrantes, acompañados de baby's breath y follaje verde. Incluye selección de frutas frescas (fresas, uvas, manzanas y duraznos), chocolates Ferrero Rocher, tarjeta de felicitación elegante y globo metalizado personalizado.</p>
                         <div class="product-price">$250,000</div>
                         <button class="product-button"
-                            onclick="return trackWhatsAppLead('https://wa.me/573202791687?text=Hola, me interesa el Elegancia Floral por $250,000. ¿Podrías darme más información?', 'elegancia_floral')">
+                            onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687?text=Hola, me interesa el Elegancia Floral por $250,000. ¿Podrías darme más información?', 'elegancia_floral')">
                             Pedir Ahora
                         </button>
                     </div>
@@ -193,7 +207,7 @@ src="https://www.facebook.com/tr?id=836126818906814&ev=PageView&noscript=1"
 
     <!-- WhatsApp Floating Button -->
     <div class="whatsapp-float">
-        <a href="#" onclick="return trackWhatsAppLead('https://wa.me/573202791687', 'floating_button_catalogo')">
+        <a href="#" onclick="trackWhatsAppLead(event, 'https://wa.me/573202791687', 'floating_button_catalogo')">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.531 3.488" />
